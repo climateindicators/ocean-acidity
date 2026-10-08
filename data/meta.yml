@@ -1,0 +1,35 @@
+indicator:
+  name: Ocean Acidity
+  slug: ocean-acidity
+  publisher: U.S. Environmental Protection Agency
+  source_page: https://19january2025snapshot.epa.gov/climate-indicators/climate-change-indicators-ocean-acidity/index.html
+  technical_documentation: https://19january2025snapshot.epa.gov/system/files/documents/2024-06/acidity_documentation.pdf
+  rights: Public domain, work of the U.S. Government (17 U.S.C. 105)
+datasets:
+- file: ocean_carbon_dioxide_acidity.csv
+  figure: Figure 1
+  figure_title: Figure 1. Ocean Carbon Dioxide Levels and Acidity, 1983-2022
+  source_file: ocean-acidity_fig-1.csv
+  source_sha256: 6897484857317e3ed3550a73b7f0f90745155ad9e71014698a1561fc1dd6559d
+  source_encoding: windows-1252
+  data_source: Bates, 2016; González-Dávila, 2012; University of South Florida, 2021;
+    University of Hawaii, 2023
+  web_update: June 2024
+  unit: pH; partial pressure in micro-atmospheres
+  rows: 2181
+  columns:
+  - name: station
+    type: string
+    description: 'Ocean time-series station: Hawaii, Canary Islands, Bermuda, or Cariaco.'
+  - name: year
+    type: number
+    description: Sampling date as a decimal year, as published.
+  - name: measure
+    type: string
+    description: pH (acidity) or pCO2 (partial pressure of dissolved carbon dioxide).
+  - name: value
+    type: number
+    description: Measured value, in the unit named in `unit`.
+  - name: unit
+    type: string
+    description: pH for pH; micro-atmospheres for pCO2.
