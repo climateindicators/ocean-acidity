@@ -1,4 +1,4 @@
-station,year,measure,value,unit
+station,decimal_year,measure,value,unit
 Hawaii,1988.833333,pH,8.1097,pH
 Hawaii,1988.920765,pH,8.1092,pH
 Hawaii,1989.021918,pH,8.1168,pH

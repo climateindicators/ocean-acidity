@@ -76,11 +76,13 @@ f1 <- bind_rows(lapply(seq_len(nrow(f1_series)), function(i) {
     stop("ocean-acidity_fig-1.csv: ", s$value_col, " has a value with no year.", call. = FALSE)
   }
   keep <- v != ""
-  data.frame(station = s$station, year = yr[keep], measure = s$measure,
+  # Named decimal_year, not year: downstream readers cast a `year` column to
+  # integer, which would collapse every sample in a year onto one point.
+  data.frame(station = s$station, decimal_year = yr[keep], measure = s$measure,
              value = v[keep], unit = unname(F1_UNITS[s$measure]),
              stringsAsFactors = FALSE)
 }))
-bad <- is.na(suppressWarnings(as.numeric(c(f1$year, f1$value))))
+bad <- is.na(suppressWarnings(as.numeric(c(f1$decimal_year, f1$value))))
 if (any(bad)) stop("ocean-acidity_fig-1.csv: non-numeric year or value.", call. = FALSE)
 assert_conservation(f1_raw, f1_series$value_col, nrow(f1), "ocean-acidity_fig-1.csv")
 
@@ -94,7 +96,7 @@ col <- function(name, type, description) {
 
 f1_columns <- list(
   col("station", "string",  "Ocean time-series station: Hawaii, Canary Islands, Bermuda, or Cariaco."),
-  col("year",    "number",  "Sampling date as a decimal year, as published."),
+  col("decimal_year", "number", "Sampling date as a decimal year, as published."),
   col("measure", "string",  "pH (acidity) or pCO2 (partial pressure of dissolved carbon dioxide)."),
   col("value",   "number",  "Measured value, in the unit named in `unit`."),
   col("unit",    "string",  "pH for pH; micro-atmospheres for pCO2.")

@@ -21,7 +21,7 @@ datasets:
   - name: station
     type: string
     description: 'Ocean time-series station: Hawaii, Canary Islands, Bermuda, or Cariaco.'
-  - name: year
+  - name: decimal_year
     type: number
     description: Sampling date as a decimal year, as published.
   - name: measure

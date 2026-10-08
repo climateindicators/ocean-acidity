@@ -56,7 +56,8 @@ which writes the tidy CSVs and `data/meta.yml`.
 
 - **Figure 1, Ocean Carbon Dioxide Levels and Acidity, 1983-2022**:
   `data/ocean_carbon_dioxide_acidity.csv`, long format
-  (`station, year, measure, value, unit`). Four stations (Hawaii, Canary
+  (`station, decimal_year, measure, value, unit`). The time column is
+  `decimal_year`, not `year`, because the site's reader casts `year` to integer. Four stations (Hawaii, Canary
   Islands, Bermuda, Cariaco), each with pH (unit `pH`) and pCO2 (unit
   `micro-atmospheres`), keyed by EPA's decimal sampling year. Coverage varies
   by station, 1983.7 (Bermuda) to 2022.7 (Hawaii). Appears on EPA's page.

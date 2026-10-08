@@ -71,8 +71,8 @@ for (f in names(images)) {
 cat("\nValue snapshots\n")
 f1 <- rd("ocean_carbon_dioxide_acidity.csv")
 check("ocean_carbon_dioxide_acidity.csv: 2181 rows", nrow(f1) == 2181L)
-check("ocean_carbon_dioxide_acidity.csv: columns station, year, measure, value, unit",
-      identical(names(f1), c("station", "year", "measure", "value", "unit")))
+check("ocean_carbon_dioxide_acidity.csv: columns station, decimal_year, measure, value, unit",
+      identical(names(f1), c("station", "decimal_year", "measure", "value", "unit")))
 check("units: pH for pH, micro-atmospheres for pCO2",
       all(f1$unit[f1$measure == "pH"] == "pH") &&
       all(f1$unit[f1$measure == "pCO2"] == "micro-atmospheres"))
@@ -99,9 +99,9 @@ for (i in seq_len(nrow(f1_snap))) {
   k <- nrow(s)
   check(sprintf("%s %s: %s rows", e$station, e$measure, e$n), k == as.integer(e$n))
   check(sprintf("%s %s: first row %s = %s", e$station, e$measure, e$first_year, e$first_value),
-        k > 0 && s$year[1] == e$first_year && s$value[1] == e$first_value)
+        k > 0 && s$decimal_year[1] == e$first_year && s$value[1] == e$first_value)
   check(sprintf("%s %s: last row %s = %s", e$station, e$measure, e$last_year, e$last_value),
-        k > 0 && s$year[k] == e$last_year && s$value[k] == e$last_value)
+        k > 0 && s$decimal_year[k] == e$last_year && s$value[k] == e$last_value)
   check(sprintf("%s %s: min %s, max %s", e$station, e$measure, e$min, e$max),
         k > 0 && s$value[which.min(v)] == e$min && s$value[which.max(v)] == e$max)
 }
